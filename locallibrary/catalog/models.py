@@ -12,6 +12,14 @@ class Genre(models.Model):
 		return self.name
 
 
+class Language(models.Model):
+	name = models.CharField(max_length=200,
+		help_text='Enter the book natural language')
+
+	def __str__(self):
+		return self.name
+
+
 class Book(models.Model):
 	"""Model representing a book (but not a specific copy of a book)."""
 	title = models.CharField(max_length=200)
@@ -21,6 +29,7 @@ class Book(models.Model):
 	isbn = models.CharField('ISBN', max_length=13,
 		help_text='https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website')
 	genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
+	language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
 
 	def __str__(self):
 		return self.title
