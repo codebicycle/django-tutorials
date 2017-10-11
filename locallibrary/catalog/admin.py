@@ -24,4 +24,4 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('book', 'status', 'due_back', 'id')
